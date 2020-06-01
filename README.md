@@ -7,7 +7,19 @@
 
 ## Test
 
-TODO
+### With Docker
+
+Build the container with `docker build -t toy-robot-go .`, then:
+
+```
+docker run -it toy-robot-go ./simon.says test
+```
+
+### Without Docker
+
+```
+./simon.says test
+```
 
 ## Install
 
