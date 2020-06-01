@@ -1,6 +1,6 @@
 package calculator
 
-import(
+import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
@@ -19,7 +19,7 @@ var _ = Describe("Sum", func() {
 		a = 2
 		b = 3
 	})
-	
+
 	It("sums two numbers", func() {
 		Expect(Sum(a, b)).To(Equal(5))
 	})
