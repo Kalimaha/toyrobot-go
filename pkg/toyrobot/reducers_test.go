@@ -1,7 +1,7 @@
 package toyrobot
 
 import (
-	"../reporter"
+	"github.com/Kalimaha/ginkgo/reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
