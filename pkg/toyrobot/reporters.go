@@ -59,4 +59,3 @@ func (r *toyRobotReporter) SpecSuiteDidEnd(summary *types.SuiteSummary) {
 func escape(s string) string {
 	return strings.Replace(s, "\n", "<:LF:>", -1)
 }
-

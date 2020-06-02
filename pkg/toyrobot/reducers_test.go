@@ -23,7 +23,7 @@ var _ = Describe("Reducer", func() {
 		initialState = State{Robot: Robot{2, 3, SOUTH}}
 	})
 
-	Describe("LEFT action", func() {
+	Describe("reduces LEFT action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: LEFT}
 		})
@@ -73,7 +73,7 @@ var _ = Describe("Reducer", func() {
 		})
 	})
 
-	Describe("RIGHT action", func() {
+	Describe("reduces RIGHT action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: RIGHT}
 		})
@@ -123,7 +123,7 @@ var _ = Describe("Reducer", func() {
 		})
 	})
 
-	Context("SPAM action", func() {
+	Context("reduces unknown actions", func() {
 		Context("when the action is not recognised", func() {
 			BeforeEach(func() {
 				action = Action{ActionType: "SPAM"}
