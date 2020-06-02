@@ -11,18 +11,26 @@ func Reduce(action Action, initialState State) (finalState State, err error) {
 
 	switch action.ActionType {
 	case LEFT:
-		finalState.Robot.Direction = initialState.Robot.Direction - 90
-		if finalState.Robot.Direction < 0 {
-			finalState.Robot.Direction += 360
-		}
-		return finalState, nil
+		return rotateLeft(finalState)
 	case RIGHT:
-		finalState.Robot.Direction = initialState.Robot.Direction + 90
-		if finalState.Robot.Direction == 360 {
-			finalState.Robot.Direction = 0
-		}
-		return finalState, nil
+		return rotateRight(finalState)
 	default:
-		return finalState, errors.New(fmt.Sprintf(string(INVALID_ACTION_TYPE), action.ActionType))
+		return finalState, errors.New(fmt.Sprintf(string(InvalidActionType), action.ActionType))
 	}
+}
+
+func rotateLeft(state State) (State, error) {
+	state.Robot.Direction = state.Robot.Direction - 90
+	if state.Robot.Direction < 0 {
+		state.Robot.Direction += 360
+	}
+	return state, nil
+}
+
+func rotateRight(state State) (State, error) {
+	state.Robot.Direction = state.Robot.Direction + 90
+	if state.Robot.Direction == 360 {
+		state.Robot.Direction = 0
+	}
+	return state, nil
 }

@@ -1,6 +1,7 @@
 package toyrobot
 
 import (
+	"../reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
@@ -8,10 +9,11 @@ import (
 
 func TestReducers(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Reducers Suite")
+	//RunSpecs(t, "Reducers Suite")
+	RunSpecsWithCustomReporters(t, "Toy Robot Reducer", []Reporter{reporter.New()})
 }
 
-var _ = Describe("Reducers", func() {
+var _ = Describe("Reducer", func() {
 	var action Action
 	var initialState State
 	var finalState State
@@ -21,7 +23,7 @@ var _ = Describe("Reducers", func() {
 		initialState = State{Robot: Robot{2, 3, SOUTH}}
 	})
 
-	Describe("LEFT", func() {
+	Describe("LEFT action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: LEFT}
 		})
@@ -32,7 +34,7 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to EAST", func() {
+			It("rotates the robot to EAST", func() {
 				Expect(finalState.Robot.Direction).To(Equal(WEST))
 			})
 		})
@@ -43,7 +45,7 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to EAST", func() {
+			It("rotates the robot to EAST", func() {
 				Expect(finalState.Robot.Direction).To(Equal(EAST))
 			})
 		})
@@ -54,7 +56,7 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to SOUTH", func() {
+			It("rotates the robot to SOUTH", func() {
 				Expect(finalState.Robot.Direction).To(Equal(SOUTH))
 			})
 		})
@@ -65,13 +67,13 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to SOUTH", func() {
+			It("rotates the robot to SOUTH", func() {
 				Expect(finalState.Robot.Direction).To(Equal(NORTH))
 			})
 		})
 	})
 
-	Describe("RIGHT", func() {
+	Describe("RIGHT action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: RIGHT}
 		})
@@ -82,7 +84,7 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to EAST", func() {
+			It("rotates the robot to EAST", func() {
 				Expect(finalState.Robot.Direction).To(Equal(EAST))
 			})
 		})
@@ -93,7 +95,7 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to EAST", func() {
+			It("rotates the robot to EAST", func() {
 				Expect(finalState.Robot.Direction).To(Equal(WEST))
 			})
 		})
@@ -104,7 +106,7 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to SOUTH", func() {
+			It("rotates the robot to SOUTH", func() {
 				Expect(finalState.Robot.Direction).To(Equal(NORTH))
 			})
 		})
@@ -115,20 +117,22 @@ var _ = Describe("Reducers", func() {
 				finalState, _ = Reduce(action, initialState)
 			})
 
-			It("rotate the robot to SOUTH", func() {
+			It("rotates the robot to SOUTH", func() {
 				Expect(finalState.Robot.Direction).To(Equal(SOUTH))
 			})
 		})
 	})
 
-	Context("when the action is not recognised", func() {
-		BeforeEach(func() {
-			action = Action{ActionType: "SPAM"}
-			_, err = Reduce(action, initialState)
-		})
+	Context("SPAM action", func() {
+		Context("when the action is not recognised", func() {
+			BeforeEach(func() {
+				action = Action{ActionType: "SPAM"}
+				_, err = Reduce(action, initialState)
+			})
 
-		It("returns an error", func() {
-			Expect(err.Error()).To(Equal("Invalid action 'SPAM', please check your input."))
+			It("returns an error", func() {
+				Expect(err.Error()).To(Equal("Invalid action 'SPAM', please check your input."))
+			})
 		})
 	})
 })

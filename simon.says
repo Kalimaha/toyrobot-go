@@ -8,5 +8,5 @@ if [[ $# -lt 1 ]]; then
 fi
 
 if [[ $1 == "test" ]]; then
-  (go test -v ./pkg/toyrobot)
+  (go test -v ./...)
 fi
