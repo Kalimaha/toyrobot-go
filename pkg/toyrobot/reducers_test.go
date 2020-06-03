@@ -9,7 +9,6 @@ import (
 
 func TestReducers(t *testing.T) {
 	RegisterFailHandler(Fail)
-	//RunSpecs(t, "Reducers Suite")
 	RunSpecsWithCustomReporters(t, "Toy Robot Reducer", []Reporter{reporter.New()})
 }
 
