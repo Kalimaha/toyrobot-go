@@ -16,9 +16,13 @@ type Action struct {
 }
 
 type Robot struct {
-	Y         int
-	X         int
+	Position  Position
 	Direction Direction
+}
+
+type Position struct {
+	X int
+	Y int
 }
 
 type Direction int
