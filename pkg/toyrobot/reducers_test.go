@@ -23,6 +23,21 @@ var _ = Describe("Reducer", func() {
 		initialState = NewState()
 	})
 
+	Describe("reduces PLACE action", func() {
+		BeforeEach(func() {
+			action = Action{ActionType: PLACE, X: 3, Y: 2, Direction: EAST}
+			finalState, _ = Reduce(action, initialState)
+		})
+
+		It("places the robot at the given position", func() {
+			Expect(finalState.Robot.Position).To(Equal(Position{X: 3, Y: 2}))
+		})
+
+		It("rotates the robot facing the given direction", func() {
+			Expect(finalState.Robot.Direction).To(Equal(EAST))
+		})
+	})
+
 	Describe("reduces REPORT action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: REPORT}

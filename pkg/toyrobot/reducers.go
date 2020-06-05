@@ -18,9 +18,20 @@ func Reduce(action Action, initialState State) (finalState State, err error) {
 		return rotateRight(finalState)
 	case REPORT:
 		return report(finalState)
+	case PLACE:
+		return place(action, finalState)
 	default:
 		return finalState, errors.New(fmt.Sprintf(string(InvalidActionType), action.ActionType))
 	}
+}
+
+func place(action Action, state State) (State, error) {
+	newPosition := Position{X: action.X, Y: action.Y}
+	if isValidPosition(state, newPosition) {
+		state.Robot.Position = newPosition
+		state.Robot.Direction = action.Direction
+	}
+	return state, nil
 }
 
 func report(state State) (State, error) {
