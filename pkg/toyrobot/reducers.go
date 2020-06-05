@@ -58,25 +58,29 @@ func int2direction(d Direction) string {
 }
 
 func move(state State) (State, error) {
-	newPosition := GetNextPosition(state.Robot)
-	if isValidPosition(state, newPosition) {
+	newPosition, err := GetNextPosition(state.Robot)
+
+	if err != nil {
+		return state, nil
+	} else if isValidPosition(state, newPosition) {
 		state.Robot.Position = newPosition
 	}
+
 	return state, nil
 }
 
-func GetNextPosition(robot Robot) Position {
+func GetNextPosition(robot Robot) (position Position, err error) {
 	switch robot.Direction {
 	case NORTH:
-		return Position{X: robot.Position.X, Y: robot.Position.Y + 1}
+		return Position{X: robot.Position.X, Y: robot.Position.Y + 1}, err
 	case SOUTH:
-		return Position{X: robot.Position.X, Y: robot.Position.Y - 1}
+		return Position{X: robot.Position.X, Y: robot.Position.Y - 1}, err
 	case EAST:
-		return Position{X: robot.Position.X + 1, Y: robot.Position.Y}
+		return Position{X: robot.Position.X + 1, Y: robot.Position.Y}, err
 	case WEST:
-		return Position{X: robot.Position.X - 1, Y: robot.Position.Y}
+		return Position{X: robot.Position.X - 1, Y: robot.Position.Y}, err
 	default:
-		return robot.Position
+		return position, errors.New(fmt.Sprintf("Unknown direction: %d", robot.Direction))
 	}
 }
 

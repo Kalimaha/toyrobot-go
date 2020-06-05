@@ -1,6 +1,7 @@
 package toyrobot
 
 import (
+	"fmt"
 	"github.com/Kalimaha/ginkgo/reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -176,6 +177,19 @@ var _ = Describe("Reducer", func() {
 
 			It("does NOT move the robot", func() {
 				Expect(finalState.Robot.Position).To(Equal(Position{X: 0, Y: 4}))
+			})
+		})
+
+		Context("when the robot is facing an unknown direction", func() {
+			BeforeEach(func() {
+				initialState.Robot.Direction = 42
+				initialState.Robot.Position = Position{X: 3, Y: 2}
+				finalState, _ = Reduce(action, initialState)
+			})
+
+			It("does NOT move the robot", func() {
+				fmt.Println(finalState.Robot.Position)
+				Expect(finalState.Robot.Position).To(Equal(Position{X: 3, Y: 2}))
 			})
 		})
 	})
