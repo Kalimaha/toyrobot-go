@@ -16,8 +16,33 @@ func Reduce(action Action, initialState State) (finalState State, err error) {
 		return rotateLeft(finalState)
 	case RIGHT:
 		return rotateRight(finalState)
+	case REPORT:
+		return report(finalState)
 	default:
 		return finalState, errors.New(fmt.Sprintf(string(InvalidActionType), action.ActionType))
+	}
+}
+
+func report(state State) (State, error) {
+	state.Report = fmt.Sprintf(
+		"The robot is at (%d, %d) and it is facing %s.",
+		state.Robot.Position.X,
+		state.Robot.Position.Y,
+		int2direction(state.Robot.Direction))
+
+	return state, nil
+}
+
+func int2direction(d Direction) string {
+	switch d {
+	case 90:
+		return "East"
+	case 180:
+		return "South"
+	case 270:
+		return "West"
+	default:
+		return "North"
 	}
 }
 
@@ -45,16 +70,7 @@ func GetNextPosition(robot Robot) Position {
 }
 
 func isValidPosition(state State, position Position) bool {
-	if position.X < state.MinX {
-		return false
-	}
-	if position.X > state.MaxX {
-		return false
-	}
-	if position.Y < state.MinY {
-		return false
-	}
-	if position.Y > state.MaxY {
+	if position.X < state.MinX || position.X > state.MaxX || position.Y < state.MinY || position.Y > state.MaxY {
 		return false
 	}
 	return true

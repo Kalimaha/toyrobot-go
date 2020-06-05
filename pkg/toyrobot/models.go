@@ -1,11 +1,12 @@
 package toyrobot
 
 type State struct {
-	MinX  int
-	MaxX  int
-	MinY  int
-	MaxY  int
-	Robot Robot
+	MinX   int
+	MaxX   int
+	MinY   int
+	MaxY   int
+	Robot  Robot
+	Report string
 }
 
 func NewState() State {
@@ -14,7 +15,7 @@ func NewState() State {
 		MaxY: 4,
 		Robot: Robot{
 			Direction: NORTH,
-			Position:  Position{0, 0},
+			Position:  Position{X: 0, Y: 0},
 		},
 	}
 }
