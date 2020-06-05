@@ -20,8 +20,7 @@ var _ = Describe("Reducer", func() {
 	var position Position
 
 	BeforeEach(func() {
-		position = Position{X: 3, Y: 2}
-		initialState = State{Robot: Robot{Position: position, Direction: SOUTH}, MaxX: 4, MaxY: 4}
+		initialState = NewState()
 	})
 
 	Describe("reduces MOVE action", func() {
@@ -31,7 +30,8 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing SOUTH", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: SOUTH}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Position = Position{X: 3, Y: 2}
+				initialState.Robot.Direction = SOUTH
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -42,8 +42,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing SOUTH and it's on the border", func() {
 			BeforeEach(func() {
-				position = Position{X: 0, Y: 0}
-				initialState = State{Robot: Robot{Position: position, Direction: SOUTH}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = SOUTH
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -54,19 +53,17 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing NORTH", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: NORTH}, MaxX: 4, MaxY: 4}
 				finalState, _ = Reduce(action, initialState)
 			})
 
 			It("moves the robot to the position in front of it", func() {
-				Expect(finalState.Robot.Position).To(Equal(Position{X: 3, Y: 3}))
+				Expect(finalState.Robot.Position).To(Equal(Position{X: 0, Y: 1}))
 			})
 		})
 
 		Context("when the robot is facing NORTH and it's on the border", func() {
 			BeforeEach(func() {
-				position = Position{X: 0, Y: 4}
-				initialState = State{Robot: Robot{Position: position, Direction: NORTH}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Position = Position{X: 0, Y: 4}
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -77,7 +74,8 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing EAST", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: EAST}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = EAST
+				initialState.Robot.Position = Position{X: 3, Y: 2}
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -100,7 +98,8 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing WEST", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: WEST}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = WEST
+				initialState.Robot.Position = Position{X: 3, Y: 2}
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -129,7 +128,6 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing NORTH", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: NORTH}, MaxX: 4, MaxY: 4}
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -140,7 +138,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing SOUTH", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: SOUTH}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = SOUTH
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -151,7 +149,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing WEST", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: WEST}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = WEST
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -162,7 +160,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing EAST", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: EAST}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = EAST
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -179,7 +177,6 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing NORTH", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: NORTH}, MaxX: 4, MaxY: 4}
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -190,7 +187,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing SOUTH", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: SOUTH}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = SOUTH
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -201,7 +198,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing WEST", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: WEST}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = WEST
 				finalState, _ = Reduce(action, initialState)
 			})
 
@@ -212,7 +209,7 @@ var _ = Describe("Reducer", func() {
 
 		Context("when the robot is facing EAST", func() {
 			BeforeEach(func() {
-				initialState = State{Robot: Robot{Position: position, Direction: EAST}, MaxX: 4, MaxY: 4}
+				initialState.Robot.Direction = EAST
 				finalState, _ = Reduce(action, initialState)
 			})
 

@@ -8,6 +8,17 @@ type State struct {
 	Robot Robot
 }
 
+func NewState() State {
+	return State{
+		MaxX: 4,
+		MaxY: 4,
+		Robot: Robot{
+			Direction: NORTH,
+			Position:  Position{0, 0},
+		},
+	}
+}
+
 type Action struct {
 	ActionType ActionType
 	X          int
