@@ -47,6 +47,39 @@ var _ = Describe("Reducer", func() {
 		It("generates a report string for the robot", func() {
 			Expect(finalState.Report).To(Equal("The robot is at (0, 0) and it is facing North."))
 		})
+
+		Context("and when the robot is facing EAST", func() {
+			BeforeEach(func() {
+				initialState.Robot.Direction = EAST
+				finalState, _ = Reduce(action, initialState)
+			})
+
+			It("generates a report string for the robot", func() {
+				Expect(finalState.Report).To(Equal("The robot is at (0, 0) and it is facing East."))
+			})
+		})
+
+		Context("and when the robot is facing SOUTH", func() {
+			BeforeEach(func() {
+				initialState.Robot.Direction = SOUTH
+				finalState, _ = Reduce(action, initialState)
+			})
+
+			It("generates a report string for the robot", func() {
+				Expect(finalState.Report).To(Equal("The robot is at (0, 0) and it is facing South."))
+			})
+		})
+
+		Context("and when the robot is facing WEST", func() {
+			BeforeEach(func() {
+				initialState.Robot.Direction = WEST
+				finalState, _ = Reduce(action, initialState)
+			})
+
+			It("generates a report string for the robot", func() {
+				Expect(finalState.Report).To(Equal("The robot is at (0, 0) and it is facing West."))
+			})
+		})
 	})
 
 	Describe("reduces MOVE action", func() {
