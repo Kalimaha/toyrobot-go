@@ -40,6 +40,7 @@ type Position struct {
 type Direction int
 type ActionType string
 type Message string
+type LogLevel string
 
 const (
 	NORTH             Direction  = 0
@@ -51,5 +52,7 @@ const (
 	LEFT              ActionType = "LEFT"
 	RIGHT             ActionType = "RIGHT"
 	REPORT            ActionType = "REPORT"
+	INFO              LogLevel   = "INFO"
+	ERROR             LogLevel   = "ERROR"
 	InvalidActionType Message    = "Invalid action '%s', please check your input."
 )
