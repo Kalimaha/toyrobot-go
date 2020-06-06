@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../pkg/toyrobot"
+	"github.com/Kalimaha/toyrobot-go/pkg/toyrobot"
 	"fmt"
 	"os"
 )
