@@ -1,7 +1,6 @@
 package toyrobot
 
 import (
-	"fmt"
 	"github.com/Kalimaha/ginkgo/reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -10,7 +9,7 @@ import (
 
 func TestReducers(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot Reducer", []Reporter{reporter.New()})
+	RunSpecsWithCustomReporters(t, "Toy Robot", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Reducer", func() {
@@ -188,7 +187,6 @@ var _ = Describe("Reducer", func() {
 			})
 
 			It("does NOT move the robot", func() {
-				fmt.Println(finalState.Robot.Position)
 				Expect(finalState.Robot.Position).To(Equal(Position{X: 3, Y: 2}))
 			})
 		})
