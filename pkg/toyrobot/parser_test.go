@@ -81,8 +81,20 @@ var _ = Describe("Parse Line", func() {
 		Expect(ParseLine("REPORT")).To(Equal(Action{ActionType: REPORT}))
 	})
 
+	It("parses 'PLACE 2,3,NORTH' string to a PLACE action", func() {
+		Expect(ParseLine("PLACE 2,3,NORTH")).To(Equal(Action{ActionType: PLACE, X: 2, Y: 3, Direction: NORTH}))
+	})
+
 	It("parses 'PLACE 2,3,SOUTH' string to a PLACE action", func() {
 		Expect(ParseLine("PLACE 2,3,SOUTH")).To(Equal(Action{ActionType: PLACE, X: 2, Y: 3, Direction: SOUTH}))
+	})
+
+	It("parses 'PLACE 2,3,EAST' string to a PLACE action", func() {
+		Expect(ParseLine("PLACE 2,3,EAST")).To(Equal(Action{ActionType: PLACE, X: 2, Y: 3, Direction: EAST}))
+	})
+
+	It("parses 'PLACE 2,3,WEST' string to a PLACE action", func() {
+		Expect(ParseLine("PLACE 2,3,WEST")).To(Equal(Action{ActionType: PLACE, X: 2, Y: 3, Direction: WEST}))
 	})
 
 	Context("when the action is not valid", func() {
