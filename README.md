@@ -12,13 +12,13 @@ Go implementation of the famous [Toy Robot coding challenge](./PROBLEM.md).
 Build the container with `docker build -t toy-robot-go .`, then:
 
 ```
-docker run -it toy-robot-go ./simon.says test
+docker run -it toy-robot-go ./simon-says test
 ```
 
 ### Without Docker
 
 ```
-./simon.says test
+./simon-says test
 ```
 
 ## Build
@@ -28,7 +28,7 @@ docker run -it toy-robot-go ./simon.says test
 The following command will generate an executable `toyrobot` file inside the container:
 
 ```
-docker run -it toy-robot-go ./simon.says build
+docker run -it toy-robot-go ./simon-says build
 ```
 
 ### Without Docker
@@ -36,7 +36,7 @@ docker run -it toy-robot-go ./simon.says build
 The following command will generate an executable `toyrobot` file:
 
 ```
-./simon.says build
+./simon-says build
 ```
 
 ## Run
