@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Kalimaha/toyrobot-go.svg?branch=master)](https://travis-ci.org/Kalimaha/toyrobot-go)
-[![Coverage Status](https://coveralls.io/repos/github/Kalimaha/toyrobot-go/badge.svg?branch=setup-travis)](https://coveralls.io/github/Kalimaha/toyrobot-go?branch=setup-travis)
+[![Coverage Status](https://coveralls.io/repos/github/Kalimaha/toyrobot-go/badge.svg?branch=master)](https://coveralls.io/github/Kalimaha/toyrobot-go?branch=master)
 
 # Toy Robot
 
