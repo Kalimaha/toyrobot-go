@@ -8,6 +8,7 @@ type State struct {
 	Robot     Robot
 	Report    string
 	Obstacles []Position
+	Map       string
 }
 
 func NewState() State {
@@ -54,6 +55,7 @@ const (
 	RIGHT             ActionType = "RIGHT"
 	REPORT            ActionType = "REPORT"
 	PLACE_OBJECT      ActionType = "PLACE_OBJECT"
+	MAP               ActionType = "MAP"
 	INFO              LogLevel   = "INFO"
 	ERROR             LogLevel   = "ERROR"
 	InvalidActionType Message    = "Invalid action '%s', please check your input."

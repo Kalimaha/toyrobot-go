@@ -90,12 +90,12 @@ Extend the Toy Robot with a `MAP` command, to print an ASCII map of the current 
 
 #### Example
 
-Given a tabletop with objects at locations `(0, 1)` and `(2, 2)`, `MAP` should print:
+Given a tabletop with robot at location `(0, 1)` and obstacle at location `(2, 2)`, `MAP` should print:
 
 ```
-00000
-00000
-00X00
-00000
-0X000
+🏳🏳🏳🏳🏳
+🏳🏳🏳🏳🏳
+🏳🏳🏔🏳🏳
+🤖️🏳🏳🏳🏳
+🏳🏳🏳🏳🏳
 ```

@@ -23,6 +23,25 @@ var _ = Describe("Reducer", func() {
 		initialState = NewState()
 	})
 
+	//	Describe("reduces MAP action", func() {
+	//		BeforeEach(func() {
+	//			action = Action{ActionType: MAP}
+	//			initialState.Robot.Position = Position{X: 0, Y: 1}
+	//			initialState.Obstacles = append(initialState.Obstacles, Position{X: 4, Y: 3})
+	//			finalState, _ = Reduce(action, initialState)
+	//		})
+	//
+	//		It("generates a map", func() {
+	//			Expect(finalState.Map).To(Equal(`
+	//🏳🏳🏳🏳🏳
+	//🏳🏳🏳🏳🏔
+	//🏳🏳🏳🏳🏳
+	//🤖🏳🏳🏳🏳
+	//🏳🏳🏳🏳🏳
+	//`))
+	//		})
+	//	})
+
 	Describe("reduces PLACE_OBJECT action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: PLACE_OBJECT}

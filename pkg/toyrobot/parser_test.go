@@ -65,6 +65,10 @@ var _ = Describe("Parse File", func() {
 })
 
 var _ = Describe("Parse Line", func() {
+	It("parses 'MAP' string to a MAP action", func() {
+		Expect(ParseLine("MAP")).To(Equal(Action{ActionType: MAP}))
+	})
+
 	It("parses 'PLACE_OBJECT' string to a PLACE_OBJECT action", func() {
 		Expect(ParseLine("PLACE_OBJECT")).To(Equal(Action{ActionType: PLACE_OBJECT}))
 	})

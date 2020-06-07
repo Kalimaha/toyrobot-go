@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/jinzhu/copier"
+	"strings"
 )
 
 func Reduce(action Action, initialState State) (finalState State, err error) {
@@ -22,9 +23,44 @@ func Reduce(action Action, initialState State) (finalState State, err error) {
 		return place(action, finalState)
 	case PLACE_OBJECT:
 		return placeObject(finalState)
+	case MAP:
+		return drawMap(finalState)
 	default:
 		return finalState, errors.New(fmt.Sprintf(string(InvalidActionType), action.ActionType))
 	}
+}
+
+func drawMap(state State) (State, error) {
+	robot := "🤖"
+	obstacle := "🏔"
+	blank := "🏳"
+	var sb strings.Builder
+
+	for j := state.MaxY; j >= 0; j-- {
+		for i := 0; i <= state.MaxX; i++ {
+			hasObstacle := false
+			for _, ob := range state.Obstacles {
+				if ob.X == i && ob.Y == j {
+					sb.WriteString(obstacle)
+					hasObstacle = true
+					break
+				}
+			}
+			if hasObstacle {
+				continue
+			} else if state.Robot.Position.X == i && state.Robot.Position.Y == j {
+				sb.WriteString(robot)
+			} else {
+				sb.WriteString(blank)
+			}
+		}
+		sb.WriteString("\n")
+	}
+	state.Map = sb.String()
+
+	fmt.Println(state.Map)
+
+	return state, nil
 }
 
 func placeObject(state State) (State, error) {

@@ -47,6 +47,8 @@ func cleanActions(actions []Action) []Action {
 func ParseLine(s string) (action Action, err error) {
 	if s == string(MOVE) {
 		return Action{ActionType: MOVE}, err
+	} else if s == string(MAP) {
+		return Action{ActionType: MAP}, err
 	} else if s == string(LEFT) {
 		return Action{ActionType: LEFT}, err
 	} else if s == string(RIGHT) {
