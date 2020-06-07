@@ -11,7 +11,7 @@ import (
 
 func TestPlay(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Play", []Reporter{reporter.New()})
+	RunSpecsWithCustomReporters(t, "Toy Robot - Simulator", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Play", func() {
@@ -40,6 +40,13 @@ var _ = Describe("Play", func() {
 
 	It("runs the simulation for Example C", func() {
 		filepath = fmt.Sprintf("%s/../../resources/exampleC.txt", currentPath)
+		state, _ = Play(filepath, ERROR)
+
+		Expect(state.Report).To(Equal("The robot is at (3, 3) and it is facing North."))
+	})
+
+	It("runs the simulation for Example D", func() {
+		filepath = fmt.Sprintf("%s/../../resources/exampleD.txt", currentPath)
 		state, _ = Play(filepath, ERROR)
 
 		Expect(state.Report).To(Equal("The robot is at (3, 3) and it is facing North."))

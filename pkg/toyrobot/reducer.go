@@ -20,9 +20,19 @@ func Reduce(action Action, initialState State) (finalState State, err error) {
 		return report(finalState)
 	case PLACE:
 		return place(action, finalState)
+	case PLACE_OBJECT:
+		return placeObject(finalState)
 	default:
 		return finalState, errors.New(fmt.Sprintf(string(InvalidActionType), action.ActionType))
 	}
+}
+
+func placeObject(state State) (State, error) {
+	obstaclePosition, _ := GetNextPosition(state.Robot)
+	if isValidPosition(state, obstaclePosition) {
+		state.Obstacles = append(state.Obstacles, obstaclePosition)
+	}
+	return state, nil
 }
 
 func place(action Action, state State) (State, error) {
@@ -85,10 +95,24 @@ func GetNextPosition(robot Robot) (position Position, err error) {
 }
 
 func isValidPosition(state State, position Position) bool {
-	if position.X < state.MinX || position.X > state.MaxX || position.Y < state.MinY || position.Y > state.MaxY {
+	if isOutbound(state, position) {
 		return false
 	}
+
+	for _, obstacle := range state.Obstacles {
+		if obstacle == position {
+			return false
+		}
+	}
+
 	return true
+}
+
+func isOutbound(state State, position Position) bool {
+	if position.X < state.MinX || position.X > state.MaxX || position.Y < state.MinY || position.Y > state.MaxY {
+		return true
+	}
+	return false
 }
 
 func rotateLeft(state State) (State, error) {

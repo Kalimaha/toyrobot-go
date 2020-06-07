@@ -9,7 +9,7 @@ import (
 
 func TestInstructions(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot", []Reporter{reporter.New()})
+	RunSpecsWithCustomReporters(t, "Toy Robot - CLI", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Instructions", func() {

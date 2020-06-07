@@ -53,6 +53,8 @@ func ParseLine(s string) (action Action, err error) {
 		return Action{ActionType: RIGHT}, err
 	} else if s == string(REPORT) {
 		return Action{ActionType: REPORT}, err
+	} else if strings.HasPrefix(s, string(PLACE_OBJECT)) {
+		return Action{ActionType: PLACE_OBJECT}, err
 	} else if strings.HasPrefix(s, string(PLACE)) {
 		return parsePlace(s), err
 	} else {
