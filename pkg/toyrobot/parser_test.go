@@ -11,7 +11,7 @@ import (
 
 func TestParser(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot", []Reporter{reporter.New()})
+	RunSpecsWithCustomReporters(t, "Toy Robot - Parser", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Parse File", func() {
@@ -65,6 +65,14 @@ var _ = Describe("Parse File", func() {
 })
 
 var _ = Describe("Parse Line", func() {
+	It("parses 'MAP' string to a MAP action", func() {
+		Expect(ParseLine("MAP")).To(Equal(Action{ActionType: MAP}))
+	})
+
+	It("parses 'PLACE_OBJECT' string to a PLACE_OBJECT action", func() {
+		Expect(ParseLine("PLACE_OBJECT")).To(Equal(Action{ActionType: PLACE_OBJECT}))
+	})
+
 	It("parses 'MOVE' string to a MOVE action", func() {
 		Expect(ParseLine("MOVE")).To(Equal(Action{ActionType: MOVE}))
 	})

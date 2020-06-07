@@ -9,12 +9,16 @@ import (
 func main() {
 	args := os.Args
 	if len(args) < 2 {
-		fmt.Println()
-		fmt.Println("Please provide the absolute path to the file containing the instruction for the Toy Robot")
-		fmt.Println("e.g. go run ./toyrobot /tmp/example.txt")
-		fmt.Println()
+		fmt.Println(Instructions())
 	} else {
 		filepath := args[1]
-		toyrobot.Play(filepath, toyrobot.INFO)
+		_, _ = toyrobot.Play(filepath, toyrobot.INFO)
 	}
+}
+
+func Instructions() string {
+	return `
+Please provide the absolute path to the file containing the instruction for the Toy Robot
+e.g. go run ./toyrobot /tmp/example.txt
+`
 }

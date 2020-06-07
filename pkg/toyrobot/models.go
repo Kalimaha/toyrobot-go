@@ -1,12 +1,14 @@
 package toyrobot
 
 type State struct {
-	MinX   int
-	MaxX   int
-	MinY   int
-	MaxY   int
-	Robot  Robot
-	Report string
+	MinX      int
+	MaxX      int
+	MinY      int
+	MaxY      int
+	Robot     Robot
+	Report    string
+	Obstacles []Position
+	Map       string
 }
 
 func NewState() State {
@@ -52,6 +54,8 @@ const (
 	LEFT              ActionType = "LEFT"
 	RIGHT             ActionType = "RIGHT"
 	REPORT            ActionType = "REPORT"
+	PLACE_OBJECT      ActionType = "PLACE_OBJECT"
+	MAP               ActionType = "MAP"
 	INFO              LogLevel   = "INFO"
 	ERROR             LogLevel   = "ERROR"
 	InvalidActionType Message    = "Invalid action '%s', please check your input."

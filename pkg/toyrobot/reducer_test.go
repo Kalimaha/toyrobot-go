@@ -9,7 +9,7 @@ import (
 
 func TestReducers(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot", []Reporter{reporter.New()})
+	RunSpecsWithCustomReporters(t, "Toy Robot - Reducer", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Reducer", func() {
@@ -21,6 +21,47 @@ var _ = Describe("Reducer", func() {
 
 	BeforeEach(func() {
 		initialState = NewState()
+	})
+
+	//	Describe("reduces MAP action", func() {
+	//		BeforeEach(func() {
+	//			action = Action{ActionType: MAP}
+	//			initialState.Robot.Position = Position{X: 0, Y: 1}
+	//			initialState.Obstacles = append(initialState.Obstacles, Position{X: 4, Y: 3})
+	//			finalState, _ = Reduce(action, initialState)
+	//		})
+	//
+	//		It("generates a map", func() {
+	//			Expect(finalState.Map).To(Equal(`
+	//🏳🏳🏳🏳🏳
+	//🏳🏳🏳🏳🏔
+	//🏳🏳🏳🏳🏳
+	//🤖🏳🏳🏳🏳
+	//🏳🏳🏳🏳🏳
+	//`))
+	//		})
+	//	})
+
+	Describe("reduces PLACE_OBJECT action", func() {
+		BeforeEach(func() {
+			action = Action{ActionType: PLACE_OBJECT}
+			finalState, _ = Reduce(action, initialState)
+		})
+
+		It("creates a new obstacle in the state", func() {
+			Expect(len(finalState.Obstacles)).To(Equal(1))
+		})
+
+		Context("when the robot is on the border", func() {
+			BeforeEach(func() {
+				initialState.Robot.Direction = SOUTH
+				finalState, _ = Reduce(action, initialState)
+			})
+
+			It("does NOT createa a new obstacle in the state", func() {
+				Expect(len(finalState.Obstacles)).To(Equal(0))
+			})
+		})
 	})
 
 	Describe("reduces PLACE action", func() {
@@ -85,6 +126,18 @@ var _ = Describe("Reducer", func() {
 	Describe("reduces MOVE action", func() {
 		BeforeEach(func() {
 			action = Action{ActionType: MOVE}
+		})
+
+		Context("when there is ab obstacle in front of the robot", func() {
+			BeforeEach(func() {
+				initialState.Robot = Robot{Position: Position{X: 0, Y: 0}, Direction: NORTH}
+				initialState.Obstacles = append(initialState.Obstacles, Position{X: 0, Y: 1})
+				finalState, _ = Reduce(action, initialState)
+			})
+
+			It("does NOT move the robot", func() {
+				Expect(finalState.Robot.Position).To(Equal(Position{X: 0, Y: 0}))
+			})
 		})
 
 		Context("when the robot is facing SOUTH", func() {

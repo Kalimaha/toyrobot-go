@@ -47,12 +47,16 @@ func cleanActions(actions []Action) []Action {
 func ParseLine(s string) (action Action, err error) {
 	if s == string(MOVE) {
 		return Action{ActionType: MOVE}, err
+	} else if s == string(MAP) {
+		return Action{ActionType: MAP}, err
 	} else if s == string(LEFT) {
 		return Action{ActionType: LEFT}, err
 	} else if s == string(RIGHT) {
 		return Action{ActionType: RIGHT}, err
 	} else if s == string(REPORT) {
 		return Action{ActionType: REPORT}, err
+	} else if strings.HasPrefix(s, string(PLACE_OBJECT)) {
+		return Action{ActionType: PLACE_OBJECT}, err
 	} else if strings.HasPrefix(s, string(PLACE)) {
 		return parsePlace(s), err
 	} else {
