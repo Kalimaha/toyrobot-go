@@ -2,7 +2,6 @@ package toyrobot
 
 import (
 	"fmt"
-	"github.com/Kalimaha/ginkgo/reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"os"
@@ -11,7 +10,6 @@ import (
 
 func TestParser(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot - Parser", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Parse File", func() {

@@ -1,7 +1,6 @@
 package toyrobot
 
 import (
-	"github.com/Kalimaha/ginkgo/reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
@@ -9,7 +8,6 @@ import (
 
 func TestReducers(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot - Reducer", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Reducer", func() {

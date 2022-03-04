@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/Kalimaha/ginkgo/reporter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
@@ -9,7 +8,6 @@ import (
 
 func TestInstructions(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecsWithCustomReporters(t, "Toy Robot - CLI", []Reporter{reporter.New()})
 }
 
 var _ = Describe("Instructions", func() {
